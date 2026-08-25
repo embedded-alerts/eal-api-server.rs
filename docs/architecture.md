@@ -5,7 +5,7 @@ Rust Axum, SeaORM, and WebSocket API for embedding-driven alert rules and delive
 ## Fleet
 
 - `eal-interfaces`
-- `eal-api`
+- `eal-api-server.rs`
 - `eal-mash-web`
 - `eal-leptos-web`
 - `eal-dioxus-web`

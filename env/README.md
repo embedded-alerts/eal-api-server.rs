@@ -1,6 +1,6 @@
 # Environment files
 
-Secrets for `embedded-alerts/eal-api` are **committed, encrypted**, with [sops] + [age],
+Secrets for `embedded-alerts/eal-api-server.rs` are **committed, encrypted**, with [sops] + [age],
 following the fleet-wide convention already used by fiducia-cloud, shared-auth,
 benefactor-cc, 3FA-app and zed-pkg (the `ORESoftware/ores-sops` contract).
 
@@ -105,7 +105,7 @@ later `RUN rm` does not remove it, and `--build-arg` is worse still because it
 lands in `docker history`.
 
 ```sh
-just env-docker-run dev ghcr.io/embedded-alerts/eal-api:dev
+just env-docker-run dev ghcr.io/embedded-alerts/eal-api-server.rs:dev
 just env-k8s-secret prod | kubectl apply -f -
 ```
 
