@@ -1,6 +1,6 @@
 [package]
 org = "embedded-alerts"
-name = "eal-api"
+name = "eal-api-server"
 version = "0.1.0"
 description = "Rust API server for Embedded Alerts"
 license = "MIT"
@@ -8,16 +8,22 @@ language = "rust"
 
 [package.repository]
 vcs = "git"
-url = "https://github.com/embedded-alerts/eal-api"
+url = "https://github.com/embedded-alerts/eal-api-server.rs"
 
 [install]
 dir = ".vendor/.zed"
 
 [dependencies]
-"embedded-alerts/eal-interfaces" = "^0.1.0"
-"embedded-alerts/eal-libs" = "^0.1.0"
-"embedded-alerts/eal-sync" = "^0.1.0"
 "shared-auth/shared-auth-clients" = "^0.1.0"
+"oresoftware/next-loggers" = "^0.1.0"
+
+[build]
+command = "cargo build --release --locked"
+outputs = ["target/release/eal-api-server"]
+
+[targets.rust]
+dir = "."
+adapter = "rust"
 
 [publish]
 include_readme = true

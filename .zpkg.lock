@@ -1,0 +1,23 @@
+version = 1
+
+[[package]]
+org = "oresoftware"
+name = "next-loggers"
+version = "0.1.0"
+sha256 = "d6e0ebac9010484df54bd3ad991dc1e7ed78bc3ff7035c513d710b08c5a7ba33"
+size = 450294
+format = "tar.gz"
+vcs_tag = "v0.1.0"
+vcs_commit = "artifact-sha256:d6e0ebac9010484df54bd3ad991dc1e7ed78bc3ff7035c513d710b08c5a7ba33"
+source = "https://registry.zpkg.net"
+
+[[package]]
+org = "shared-auth"
+name = "shared-auth-clients"
+version = "0.1.0"
+sha256 = "6264ec951a3c17d2b359aa4d4d552de899c9722ca4685f122e66fb7685ffdc54"
+size = 159813
+format = "tar.gz"
+vcs_tag = "v0.1.0"
+vcs_commit = "artifact-sha256:6264ec951a3c17d2b359aa4d4d552de899c9722ca4685f122e66fb7685ffdc54"
+source = "https://registry.zpkg.net"

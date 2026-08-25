@@ -3,7 +3,7 @@
   "bootstrap_id": "four-org-rust-fleets-2026-08-04-v1",
   "generated_on": "2026-08-04",
   "organization": "embedded-alerts",
-  "repository": "eal-api",
+  "repository": "eal-api-server.rs",
   "product": "Embedded Alerts",
   "kind": "service",
   "description": "Axum REST and WebSocket API server for Embedded Alerts.",

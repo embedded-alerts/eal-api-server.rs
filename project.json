@@ -2,7 +2,7 @@
   "bootstrap_date": "20260804",
   "kind": "api",
   "organization": "embedded-alerts",
-  "repository": "eal-api",
+  "repository": "eal-api-server.rs",
   "required_paths": [
     ".github/workflows/ci.yml",
     ".gitignore",
