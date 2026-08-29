@@ -707,7 +707,7 @@ fn required_env(name: &str) -> Result<String, String> {
 }
 
 fn optional_env(name: &str) -> Option<String> {
-    std::env::var(name)
+    crate::flags::var(name)
         .ok()
         .map(|value| value.trim().to_owned())
         .filter(|value| !value.is_empty())

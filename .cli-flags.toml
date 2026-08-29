@@ -1,0 +1,111 @@
+[identity]
+service = "eal-api-server"
+type_name = "RuntimeEnv"
+
+[help]
+url = "https://github.com/flags-2-env/flags-2-env"
+columns = ["options", "env", "type", "default", "description"]
+
+[parse]
+allow_unknown = false
+
+[env]
+ignore = ["DATABASE_URL", "SHARED_AUTH_SERVICE_CREDENTIAL", "EAL_API_TLS_KEY_FILE", "EAL_NATS_COMMAND_HMAC_KEY"]
+
+[flags.help]
+env = "CLI_HELP_REQUESTED"
+long = "help"
+short = "h"
+type = "boolean"
+default = false
+help = "Print command-line help."
+
+[flags.version]
+env = "CLI_VERSION_REQUESTED"
+long = "version"
+short = "V"
+type = "boolean"
+default = false
+help = "Print the server version."
+
+[flags.host]
+env = "HOST"
+long = "host"
+type = "string"
+default = "0.0.0.0"
+help = "API listener host."
+
+[flags.port]
+env = "PORT"
+long = "port"
+short = "p"
+type = "integer"
+default = 8080
+help = "API listener port."
+
+[flags.shared-auth-base-url]
+env = "SHARED_AUTH_BASE_URL"
+long = "shared-auth-base-url"
+type = "string"
+help = "Credential-free Shared Auth base URL."
+
+[flags.shared-auth-issuer]
+env = "SHARED_AUTH_ISSUER"
+long = "shared-auth-issuer"
+type = "string"
+help = "Expected Shared Auth issuer."
+
+[flags.auth-audience]
+env = "EAL_AUTH_AUDIENCE"
+long = "auth-audience"
+type = "string"
+help = "Expected access-token audience."
+
+[flags.authorized-client]
+env = "EAL_AUTHORIZED_CLIENT"
+long = "authorized-client"
+type = "string"
+help = "Authorized Shared Auth client identifier."
+
+[flags.provider-tenant]
+env = "EAL_PROVIDER_TENANT"
+long = "provider-tenant"
+type = "string"
+help = "Shared Auth provider tenant identifier."
+
+[flags.product-tenant]
+env = "EAL_PRODUCT_TENANT"
+long = "product-tenant"
+type = "string"
+help = "Embedded Alerts product tenant identifier."
+
+[flags.api-mtls-bind]
+env = "EAL_API_MTLS_BIND"
+long = "api-mtls-bind"
+type = "string"
+help = "Optional API mTLS listener address."
+
+[flags.api-tls-cert-file]
+env = "EAL_API_TLS_CERT_FILE"
+long = "api-tls-cert-file"
+type = "string"
+help = "API TLS certificate-chain file."
+
+[flags.web-client-ca-file]
+env = "EAL_WEB_CLIENT_CA_FILE"
+long = "web-client-ca-file"
+type = "string"
+help = "Trusted web-client CA file."
+
+[flags.nats-url]
+env = "NATS_URL"
+long = "nats-url"
+type = "string"
+help = "Credential-free TLS or loopback NATS URL."
+
+[flags.rust-log]
+env = "RUST_LOG"
+long = "rust-log"
+type = "string"
+default = "info,tower_http=info,hyper=warn"
+help = "Tracing filter."
