@@ -1,6 +1,6 @@
 # Environment files
 
-Secrets for `embedded-alerts/eal-api` are **committed, encrypted**, with [sops] + [age],
+Secrets for `embedded-alerts/eal-api-server.rs` are **committed, encrypted**, with [sops] + [age],
 following the fleet-wide convention already used by fiducia-cloud, shared-auth,
 benefactor-cc, 3FA-app and zed-pkg (the `ORESoftware/ores-sops` contract).
 
@@ -92,8 +92,9 @@ encrypted, so anything explanatory belongs in this file instead.
 
 Two format limits, inherited from sops' dotenv parser:
 
-- **No multi-line values.** A PEM must be a single line with `\n` escapes:
-  `JWT_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIE…\n-----END PRIVATE KEY-----\n"`
+- **No multi-line values.** A PEM must be a single quoted line with literal
+  `\n` escapes between its standard header, encoded body, and footer. Never
+  commit a real key or a credential-shaped example.
 - **Blank lines are dropped** on round-trip. Cosmetic only.
 
 ## Containers
@@ -104,7 +105,7 @@ later `RUN rm` does not remove it, and `--build-arg` is worse still because it
 lands in `docker history`.
 
 ```sh
-just env-docker-run dev ghcr.io/embedded-alerts/eal-api:dev
+just env-docker-run dev ghcr.io/embedded-alerts/eal-api-server.rs:dev
 just env-k8s-secret prod | kubectl apply -f -
 ```
 

@@ -1,4 +1,4 @@
-# sops recipients for this repository (embedded-alerts/eal-api).
+# sops recipients for this repository (embedded-alerts/eal-api-server.rs).
 #
 # Everything in this file is PUBLIC key material and is safe to commit. Private
 # keys exist only on developer machines (`just env-keygen`) and never in git.
