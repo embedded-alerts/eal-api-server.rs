@@ -11,7 +11,7 @@ async-nats = "0.50"
 axum = { version = "0.8", features = ["macros", "ws"] }
 bytes = "1"
 chrono = { version = "0.4", features = ["serde"] }
-dotenvy = "0.15"
+flags2env = { version = "0.1.0", git = "https://github.com/flags-2-env/flags-2-env", rev = "d7bad9ea7dfc657653368237e08903514cdca1ec" }
 futures-util = "0.3"
 hex = "0.4"
 hmac = "0.12"
@@ -23,9 +23,11 @@ serde_json = "1"
 sha2 = "0.10"
 shared-auth-client = { git = "https://github.com/shared-auth/shared-auth-clients", rev = "a814cf34eeef3429e5dee36f45965b6958d694bb", package = "shared-auth-client" }
 thiserror = "2"
+tempfile = "3"
 tokio = { version = "1", features = ["fs", "macros", "net", "rt-multi-thread", "signal", "sync", "time"] }
 tokio-rustls = "0.26"
 tokio-util = { version = "0.7", features = ["codec"] }
+toml = "0.8"
 tower-http = { version = "0.7", features = ["trace"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt", "json"] }

@@ -1,10 +1,9 @@
 pub mod auth;
+pub mod flags;
 pub mod model;
 pub mod store;
 pub mod telemetry;
 pub mod transport;
-
-use std::env;
 
 use anyhow::Context;
 use auth::{AuthBoundary, AuthError, READ_SCOPE, VerifiedActor, WRITE_SCOPE};
@@ -103,8 +102,7 @@ pub fn router(state: AppState) -> Router {
 }
 
 pub async fn run() -> anyhow::Result<()> {
-    dotenvy::dotenv().ok();
-    let _telemetry = telemetry::init("eal-api-server");
+    let _telemetry = telemetry::init("eal-api-server")?;
     let auth = AuthBoundary::from_env().context("load Shared Auth boundary")?;
     let database = connect_database().await?;
     let store = AlertStore::new(database);
@@ -122,8 +120,8 @@ pub async fn run() -> anyhow::Result<()> {
         mtls_configured: mtls.is_some(),
         jetstream_configured: jetstream.is_some(),
     };
-    let host = env::var("HOST").unwrap_or_else(|_| "0.0.0.0".to_owned());
-    let port = env::var("PORT").unwrap_or_else(|_| "8080".to_owned());
+    let host = flags::var("HOST").unwrap_or_else(|_| "0.0.0.0".to_owned());
+    let port = flags::var("PORT").unwrap_or_else(|_| "8080".to_owned());
     let listener = tokio::net::TcpListener::bind(format!("{host}:{port}"))
         .await
         .context("bind API listener")?;
@@ -136,7 +134,7 @@ pub async fn run() -> anyhow::Result<()> {
 }
 
 async fn connect_database() -> anyhow::Result<Option<DatabaseConnection>> {
-    match env::var("DATABASE_URL") {
+    match flags::var("DATABASE_URL") {
         Ok(url) if !url.trim().is_empty() => Ok(Some(
             tokio::time::timeout(std::time::Duration::from_secs(5), Database::connect(url))
                 .await

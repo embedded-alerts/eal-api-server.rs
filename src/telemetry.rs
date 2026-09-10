@@ -16,17 +16,18 @@ impl Drop for TelemetryGuard {
     }
 }
 
-pub fn init(service_name: &str) -> TelemetryGuard {
+pub fn init(service_name: &str) -> anyhow::Result<TelemetryGuard> {
+    let filter = EnvFilter::try_new(
+        crate::flags::var("RUST_LOG")
+            .unwrap_or_else(|_| "info,tower_http=info,hyper=warn".to_owned()),
+    )?;
     let logger = application_logger(service_name);
-    let subscriber = tracing_subscriber::fmt().json().with_env_filter(
-        EnvFilter::try_from_default_env()
-            .unwrap_or_else(|_| EnvFilter::new("info,tower_http=info,hyper=warn")),
-    );
+    let subscriber = tracing_subscriber::fmt().json().with_env_filter(filter);
     match subscriber.try_init() {
         Ok(()) => lifecycle(&logger, "startup", "ready"),
         Err(_) => lifecycle(&logger, "startup", "subscriber_conflict"),
     }
-    TelemetryGuard { logger }
+    Ok(TelemetryGuard { logger })
 }
 
 fn application_logger(service_name: &str) -> Logger {
