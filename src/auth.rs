@@ -176,7 +176,7 @@ fn bounded_identifier(value: &str) -> bool {
 }
 
 fn required_env(name: &str) -> Result<String, AuthError> {
-    std::env::var(name)
+    crate::flags::var(name)
         .ok()
         .map(|value| value.trim().to_owned())
         .filter(|value| !value.is_empty())
