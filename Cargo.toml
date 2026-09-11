@@ -6,6 +6,9 @@ rust-version = "1.95"
 license = "MIT"
 
 [dependencies]
+eal-lib-core = { git = "https://github.com/embedded-alerts/eal-lib-core.git", features = ["read-write"] }
+ores-transport = { git = "https://github.com/ORESoftware/ores-transport.git", branch = "main" }  # TODO(DEN): pin to a rev once ores-transport is pushed
+k8s-web-api-data-plane = { git = "https://github.com/ORESoftware/k8s-libs-and-shared-defs.git", rev = "55adadc9f6d223d40b28ae66097dfe16930951b1", package = "k8s-web-api-data-plane" }
 anyhow = "1"
 async-nats = "0.50"
 axum = { version = "0.8", features = ["macros", "ws"] }

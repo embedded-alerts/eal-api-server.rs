@@ -1,3 +1,5 @@
+pub mod four_transports;
+pub mod web_api_plane;
 pub mod auth;
 pub mod flags;
 pub mod model;
@@ -91,6 +93,7 @@ impl From<AuthError> for ApiError {
 pub fn router(state: AppState) -> Router {
     Router::new()
         .route("/healthz", get(health))
+            .route("/v1/data-plane/capabilities", axum::routing::get(|| async { axum::Json(crate::web_api_plane::capabilities()) }))
         .route("/readyz", get(health))
         .route("/v1/alerts", get(list_alerts).post(create_alert))
         .route("/v1/alerts/{id}", get(get_alert))
