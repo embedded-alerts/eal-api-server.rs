@@ -1,0 +1,26 @@
+version = 1
+
+[common]
+enabled = true
+
+[common.logging]
+enabled = true
+level = "info"
+console = true
+auto_send = false
+
+[common.tracing]
+enabled = true
+sample_ratio = 0.1
+propagators = ["tracecontext", "baggage"]
+
+[common.metrics]
+enabled = true
+
+[server]
+service_name = "eal-api-server"
+
+# The base template has no implicit/global OTLP provider. Keep export disabled
+# until the application installs an explicit application-owned OTel transport.
+[server.exporter]
+protocol = "none"

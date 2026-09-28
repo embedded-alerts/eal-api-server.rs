@@ -1,0 +1,21 @@
+protocol = "ores.lru-config.v1"
+namespace = "eal-api-server"
+roles = ["server"]
+
+[redis]
+urlEnv = "REDIS_URL"
+keyPrefix = "eal:lru:api"
+pubsubChannel = "eal:lru:api:events"
+reconcileIntervalMs = 180000
+reconnectMinMs = 1000
+reconnectMaxMs = 30000
+
+[defaults]
+capacity = 512
+syncMode = "read_only"
+overflowMode = "reject_and_reconcile"
+failOpenOnStartup = false
+
+[[caches]]
+name = "runtime-env"
+role = "server"
